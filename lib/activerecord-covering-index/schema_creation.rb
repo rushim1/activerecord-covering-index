@@ -6,7 +6,7 @@ module ActiverecordCoveringIndex
       attr_opts = { to: :@conn }
       attr_opts[:private] = true if ActiveRecord::VERSION::MAJOR >= 6
 
-      base.delegate :supports_covering_index?, attr_opts
+      base.delegate :supports_covering_index?, **attr_opts
     end
 
     private
