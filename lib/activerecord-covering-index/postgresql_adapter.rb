@@ -83,19 +83,18 @@ module ActiverecordCoveringIndex
         orders = {}
         opclasses = {}
 
-        columns = Hash[query(<<~SQL, "SCHEMA")].values_at(*indkey).compact
+        columns = Hash[query(<<~SQL, "SCHEMA")].values_at(*indkey)
           SELECT a.attnum, a.attname
           FROM pg_attribute a
           WHERE a.attrelid = #{oid}
           AND a.attnum IN (#{indkey.join(",")})
         SQL
 
+        non_key_columns = columns.pop(columns.count - indnkeyatts)
+
         if indkey.include?(0)
-          non_key_columns = columns
           columns = expressions
         else
-          non_key_columns = columns.pop(columns.count - indnkeyatts)
-
           # add info on sort order (only desc order is explicitly specified, asc is the default)
           # and non-default opclasses
           expressions.scan(/(?<column>\w+)"?\s?(?<opclass>\w+_ops)?\s?(?<desc>DESC)?\s?(?<nulls>NULLS (?:FIRST|LAST))?/).each do |column, opclass, desc, nulls|
