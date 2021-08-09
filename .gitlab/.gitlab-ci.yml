@@ -1,0 +1,18 @@
+stages:
+  - test
+
+test:
+  image: ruby:2.6
+  services:
+    - postgres:11
+  parallel:
+    matrix:
+      - ACTIVERECORD_VERSION: [activerecord-5-2, activerecord-6-0, activerecord-6-1]
+  variables:
+    POSTGRES_DB: activerecord-covering-index_test
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres
+  script:
+    - bundle install
+    - bundle exec appraisal $ACTIVERECORD_VERSION bundle install
+    - bundle exec appraisal $ACTIVERECORD_VERSION rspec

@@ -15,7 +15,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     ActiveRecord::Base.establish_connection(
       adapter: 'postgresql',
-      host: 'localhost',
+      host: ENV['POSTGRES_HOST'] || 'localhost',
       username: 'postgres',
       password: 'postgres',
       database: 'activerecord-covering-index_test'
