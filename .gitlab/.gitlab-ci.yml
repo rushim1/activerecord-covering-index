@@ -2,12 +2,12 @@ stages:
   - test
 
 test:
-  image: ruby:2.6
+  image: ruby:2.7
   services:
     - postgres:11
   parallel:
     matrix:
-      - ACTIVERECORD_VERSION: [activerecord-5-2, activerecord-6-0, activerecord-6-1]
+      - ACTIVERECORD_VERSION: [activerecord-5-2, activerecord-6-0, activerecord-6-1, activerecord-7-0]
   variables:
     POSTGRES_DB: activerecord-covering-index_test
     POSTGRES_USER: postgres

@@ -8,7 +8,7 @@ From the [PostgreSQL documentation](https://www.postgresql.org/docs/11/sql-creat
 
 ## Compatibility
 
-- ActiveRecord 5.2, 6.0 and 6.1
+- ActiveRecord 5.2 and later
 - PostgreSQL 11 and later
 
 ## Installation
