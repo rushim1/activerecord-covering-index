@@ -10,8 +10,8 @@ module ActiverecordCoveringIndex
       end
     end
 
-    def add_index_options(table_name, column_name, name: nil, if_not_exists: false, internal: false, **options)
-      options.assert_valid_keys(:unique, :length, :order, :opclass, :where, :type, :using, :comment, :algorithm, :include)
+    def add_index_options(table_name, column_name, name: nil, internal: false, **options)
+      options.assert_valid_keys(:unique, :length, :order, :opclass, :where, :type, :using, :comment, :algorithm, :if_not_exists, :include)
 
       options[:name] = name if name
       options[:internal] = internal
