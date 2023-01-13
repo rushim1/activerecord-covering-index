@@ -9,6 +9,7 @@ test:
     matrix:
       - ACTIVERECORD_VERSION: [activerecord-5-2, activerecord-6-0, activerecord-6-1, activerecord-7-0]
   variables:
+    POSTGRES_HOST: postgres
     POSTGRES_DB: activerecord-covering-index_test
     POSTGRES_USER: postgres
     POSTGRES_PASSWORD: postgres
